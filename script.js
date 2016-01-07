@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         SFF.SE Toggle all soilers on a question
+// @name         SFF.SE Toggle all spoilers on a question
 // @version      1.0
 // @description  Adds a checkbox to SFF.SE questions to show/hide all spoilers on the current question
 // @author       Jason Baker
-// @match         *://*.stackexchange.com/questions/*
+// @match         *://scifi.stackexchange.com/questions/*
 // @grant        none
 // ==/UserScript==
 /* jshint -W097 */
