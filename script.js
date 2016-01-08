@@ -4,6 +4,7 @@
 // @description  Adds a checkbox to SFF.SE questions to show/hide all spoilers on the current question
 // @author       Jason Baker
 // @match         *://scifi.stackexchange.com/questions/*
+// @match         *://meta.scifi.stackexchange.com/questions/*
 // @grant        none
 // ==/UserScript==
 /* jshint -W097 */
