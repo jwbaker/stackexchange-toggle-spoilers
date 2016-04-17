@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SFF.SE Toggle all spoilers on a question
-// @version      1.0
+// @version      1.1.1
 // @description  Adds a checkbox to SFF.SE questions to show/hide all spoilers on the current question
 // @author       Jason Baker
 // @match         *://scifi.stackexchange.com/questions/*
@@ -11,12 +11,9 @@
 'use strict';
 
 var onCheckboxChanged = function(){
-    var newColor = '#fff9e3';
-    if(this.checked) newColor = '#333';
-    var spoilers = document.getElementsByClassName('spoiler');
-    for(var i = 0; i < spoilers.length; i++){
-        spoilers[i].style.color = newColor;
-    }
+    var lookupClass = this.checked ? 'spoiler' : 'poiler';
+    var replaceClass = this.checked ? 'poiler' : 'spoiler';
+    jQuery('.' + lookupClass).addClass(replaceClass).removeClass(lookupClass);
 };
 
 var row = document.getElementById('qinfo').insertRow();
@@ -29,7 +26,7 @@ labelCell.appendChild(labelElem);
 
 var checkboxCell = row.insertCell(1);
 checkboxCell.style.padding = '0 0 0 10px';
-var checkbox = document.createElement('input')
+var checkbox = document.createElement('input');
 checkbox.type = 'checkbox';
 checkbox.id = 'show-spoilers';
 checkbox.checked = false;
