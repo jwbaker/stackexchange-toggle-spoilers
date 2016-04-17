@@ -10,28 +10,18 @@
 /* jshint -W097 */
 'use strict';
 
-var onCheckboxChanged = function(){
+jQuery('#qinfo').append(
+	'<tr>' + 
+		'<td>' + 
+			'<p class="label-key">show spoilers</p>' + 
+		'</td>' +
+		'<td style="padding: 0px 0px 0px 10px;">' + 
+			'<p class="label-key"><input type="checkbox" id="show-spoilers"></p>' +
+		'</td>' + 
+	'</tr>'
+);
+jQuery('#show-spoilers').change(function(){
     var lookupClass = this.checked ? 'spoiler' : 'poiler';
     var replaceClass = this.checked ? 'poiler' : 'spoiler';
     jQuery('.' + lookupClass).addClass(replaceClass).removeClass(lookupClass);
-};
-
-var row = document.getElementById('qinfo').insertRow();
-var labelCell = row.insertCell(0);
-var label = document.createTextNode('show spoilers');
-var labelElem = document.createElement('p');
-labelElem.className += ' label-key';
-labelElem.appendChild(label);
-labelCell.appendChild(labelElem);
-
-var checkboxCell = row.insertCell(1);
-checkboxCell.style.padding = '0 0 0 10px';
-var checkbox = document.createElement('input');
-checkbox.type = 'checkbox';
-checkbox.id = 'show-spoilers';
-checkbox.checked = false;
-checkbox.onchange = onCheckboxChanged;
-var checkboxElem = document.createElement('p');
-checkboxElem.className += ' label-key';
-checkboxElem.appendChild(checkbox);
-checkboxCell.appendChild(checkboxElem);
+});
