@@ -10,6 +10,9 @@
 /* jshint -W097 */
 'use strict';
 
+var SPOILER_CLASS = 'spoiler';
+var NOT_SPOILER_CLASS = 'poiler';
+
 jQuery('#qinfo').append(
 	'<tr>' + 
 		'<td>' + 
@@ -21,7 +24,7 @@ jQuery('#qinfo').append(
 	'</tr>'
 );
 jQuery('#show-spoilers').change(function(){
-    var lookupClass = this.checked ? 'spoiler' : 'poiler';
-    var replaceClass = this.checked ? 'poiler' : 'spoiler';
+    var lookupClass = this.checked ? SPOILER_CLASS : NOT_SPOILER_CLASS;
+    var replaceClass = this.checked ? NOT_SPOILER_CLASS : SPOILER_CLASS;
     jQuery('.' + lookupClass).addClass(replaceClass).removeClass(lookupClass);
 });
