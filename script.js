@@ -13,6 +13,7 @@
 var SPOILER_CLASS = 'spoiler';
 var NOT_SPOILER_CLASS = 'poiler';
 
+var isChecked = false;
 jQuery('#qinfo').append(
 	'<tr>' + 
 		'<td>' + 
@@ -28,3 +29,4 @@ jQuery('#show-spoilers').change(function(){
     var replaceClass = this.checked ? NOT_SPOILER_CLASS : SPOILER_CLASS;
     jQuery('.' + lookupClass).addClass(replaceClass).removeClass(lookupClass);
 });
+if(isChecked) jQuery('#show-spoilers').trigger('click');
