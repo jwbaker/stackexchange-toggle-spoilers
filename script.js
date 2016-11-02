@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SFF.SE Toggle all spoilers on a question
-// @version      1.1.1
+// @version      1.1.2
 // @description  Adds a checkbox to SFF.SE questions to show/hide all spoilers on the current question
 // @author       Jason Baker
 // @match         *://scifi.stackexchange.com/questions/*
@@ -8,25 +8,44 @@
 // @grant        none
 // ==/UserScript==
 /* jshint -W097 */
-'use strict';
+(function(){
+	'use strict';
 
-var SPOILER_CLASS = 'spoiler';
-var NOT_SPOILER_CLASS = 'poiler';
+	var SPOILER_CLASS = 'spoiler';
+	var NOT_SPOILER_CLASS = 'poiler';
 
-var isChecked = false;
-jQuery('#qinfo').append(
-	'<tr>' + 
-		'<td>' + 
-			'<p class="label-key">show spoilers</p>' + 
-		'</td>' +
-		'<td style="padding: 0px 0px 0px 10px;">' + 
-			'<p class="label-key"><input type="checkbox" id="show-spoilers"></p>' +
-		'</td>' + 
-	'</tr>'
-);
-jQuery('#show-spoilers').change(function(){
-    var lookupClass = this.checked ? SPOILER_CLASS : NOT_SPOILER_CLASS;
-    var replaceClass = this.checked ? NOT_SPOILER_CLASS : SPOILER_CLASS;
-    jQuery('.' + lookupClass).addClass(replaceClass).removeClass(lookupClass);
-});
-if(isChecked) jQuery('#show-spoilers').trigger('click');
+	var isChecked = false;
+	var spoilerToggleRow = document.getElementById('qinfo').insertRow();
+	var labelCell = spoilerToggleRow.insertCell();
+	var toggleCell = spoilerToggleRow.insertCell();
+
+	var label = document.createTextNode('show spoilers');
+	var labelElem = document.createElement('p');
+	labelElem.className += ' label-key';
+	labelElem.appendChild(label);
+	labelCell.appendChild(labelElem);
+
+	toggleCell.style.padding = '0 0 0 10px';
+	var checkbox = document.createElement('input');
+	checkbox.type = 'checkbox';
+	checkbox.id = 'show-spoilers';
+	checkbox.checked = isChecked;
+	var checkboxElem = document.createElement('p');
+	checkboxElem.className += ' label-key';
+	checkboxElem.appendChild(checkbox);
+	toggleCell.appendChild(checkboxElem);
+
+	checkbox.onchange = function(){
+		var lookupClass = this.checked ? SPOILER_CLASS : NOT_SPOILER_CLASS;
+		var replaceClass = this.checked ? NOT_SPOILER_CLASS : SPOILER_CLASS;
+
+		var classExtractRegex = new RegExp('(?:^|\s)' + lookupClass + '(?!\S)', 'g');
+
+		var spoilerBlocks = document.getElementsByClassName(lookupClass);
+
+		while(spoilerBlocks.length > 0){
+			spoilerBlocks[0].className =replaceClass;
+		}
+	};
+})();
+Ns
