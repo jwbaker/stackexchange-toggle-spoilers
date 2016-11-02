@@ -1,10 +1,15 @@
 // ==UserScript==
-// @name         SFF.SE Toggle all spoilers on a question
-// @version      1.1.2
-// @description  Adds a checkbox to SFF.SE questions to show/hide all spoilers on the current question
+// @name         StackExchange Toggle all spoilers on a question
+// @version      1.2.0
+// @description  Adds a checkbox to StackExchange questions to show/hide all spoilers on the current question
 // @author       Jason Baker
-// @match         *://scifi.stackexchange.com/questions/*
-// @match         *://meta.scifi.stackexchange.com/questions/*
+// @match       *://*.askubuntu.com/questions/*
+// @match       *://*.mathoverflow.net/questions/*
+// @match       *://*.serverfault.com/questions/*
+// @match       *://*.stackapps.com/questions/*
+// @match       *://*.stackexchange.com/questions/*
+// @match       *://*.stackoverflow.com/questions/*
+// @match       *://*.superuser.com/questions/*
 // @grant        none
 // ==/UserScript==
 /* jshint -W097 */
